@@ -107,3 +107,51 @@ Dans votre terminal:
 cd back
 ./gradlew test
 ```
+
+### Images Docker
+
+#### Client
+
+##### Construire l'image
+
+```shell
+docker build --target front -t orion-microcrm-front:latest .
+```
+
+##### Exécuter l'image
+
+```shell
+docker run -it --rm -p 80:80 -p 443:443 orion-microcrm-front:latest
+```
+
+L'application sera disponible sur https://localhost.
+
+#### Serveur
+
+##### Construire l'image
+
+```shell
+docker build --target back -t orion-microcrm-back:latest .
+```
+
+##### Exécuter l'image
+
+```shell
+docker run -it --rm -p 8080:8080 orion-microcrm-back:latest
+```
+
+L'API sera disponible sur http://localhost:8080.
+
+#### Tout en un
+
+```shell
+docker build --target standalone -t orion-microcrm-standalone:latest .
+```
+
+##### Exécuter l'image
+
+```shell
+docker run -it --rm -p 8080:8080 -p 80:80 -p 443:443 orion-microcrm-standalone:latest
+```
+
+L'application sera disponible sur https://localhost et l'API sur http://localhost:8080.
